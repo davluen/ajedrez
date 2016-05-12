@@ -1,0 +1,147 @@
+#include<iostream>
+
+
+
+//******PIEZAS******
+
+class pieza{
+public:
+	pieza::pieza(){
+		_firstmov=true;
+	}
+	pieza::~pieza(){
+
+	}
+	virtual bool puedemover();
+
+	virtual void mover(){
+		//comprobar si la casilla existe
+		//Comprobar si es el primer movimiento que realiza la pieza
+		//Comprobar si la casilla dada es compatible con los movimientos de la pieza
+		//Comprobar si el camino está libre (para el caballo NO)
+		//comprobar si la casilla está ocupada por otra de tus piezas
+	}
+
+protected:
+	bool _firstmov; //1: la pieza no se ha movido por primera vez  0: la pieza ya se ha movido
+	bool _color; //1: blancas   0: negras
+	casilla* _posicion;
+};
+
+class torre: public pieza{
+public:
+	torre::torre(bool coljug):pieza(){
+		_color=coljug;
+	}
+	torre::~torre(){//no es necesario llamar al destructor de pieza
+	};
+
+	void enroque(){
+		//comprobar que tanto el rey como la torre no han sido movidas (puntero a rey.firstmov)
+		//se enrocan
+		//se cambia el valor de rey.firstmov y de torre.firstmov
+	}
+
+};
+
+class caballo: public pieza{
+public:
+	caballo::caballo():pieza(){
+
+	}
+	caballo::~caballo();
+}
+
+class alfil: public pieza{
+public:
+	alfil::alfil():pieza(){
+
+	}
+	alfil::~alfil();
+}
+
+class reina: public pieza{
+public:
+	reina::reina():pieza(){
+
+	}
+	reina::~reina();
+}
+
+class rey: public pieza{
+public:
+	rey::rey():pieza(){
+
+	}
+	rey::~rey();
+
+	void enroque(){
+		//comprobar que tanto el rey como la torre no han sido movidas (puntero a torre.firstmov)
+		//se enrocan
+		//se cambia el valor de rey.firstmov y de torre.firstmov
+	}
+}
+
+class peon: public pieza{
+public:
+	peon::peon():pieza(){
+
+	}
+	peon::~peon();
+	void dama(){
+		//si un peon llega al final del tablero, se crea una reina en su posicion y se destruye el peon
+		this->~peon();
+	}
+}
+
+
+//******CASILLAS Y TABLERO******
+
+class casilla{
+	//Esta clase debe contener informacion de su posición y un puntero a su contenido, así como su color
+public:
+	casilla::casilla(unsigned int xpos, unsigned int ypos, bool col){
+		_x=xpos;
+		_y=ypos;
+		_color=col;
+	}
+casilla::casilla(){
+
+		}
+protected: 
+	bool _color; //1: blanco   0: negro
+	bool _ocupado; //0: no   1: si
+	pieza *_okupa;
+	unsigned int _x, _y; //_x: fila   _y:columna
+};
+
+class tablero{
+	//El tablero debe generar una matriz de 8x8 casillas blancas y negras
+	//Se debe visualizar de la siguiente forma:
+		//El movimiento anterior
+		//El tablero ocupado
+		//las piezas comidas: el puntero de pieza se moverá a un array dependiendo se su color
+	/*Salida por pantalla del tablero
+		
+	8	████    ████    ████    ████    .
+		████    ████    ████    ████    .
+	7	    ████    ████    ████    ████.
+		    ████    ████    ████    ████.
+	6	████    ████    ████    ████    .
+		████    ████    ████    ████    .
+	5	    ████    ████    ████    ████.
+		    ████    ████    ████    ████.
+	4	████    ████    ████    ████    .
+		████    ████    ████    ████    .
+	3	    ████    ████    ████    ████.
+		    ████    ████    ████    ████.
+	2	████    ████    ████    ████    .
+		████    ████    ████    ████    .
+	1	    ████    ████    ████    ████.
+		    ████    ████    ████    ████.
+		a   b   c   d   e   f   g   h	.
+
+		Comidas B:
+		Comidas N:
+	*/  
+};
