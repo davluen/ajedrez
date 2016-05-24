@@ -1,0 +1,28 @@
+bool movLegal(casilla& destino){
+	bool esLegal=false;
+	
+	if(!destino.ocupada()||(destino.ocupada().color()!=this->color())){
+		//Movimiento vertical
+		if(destino.coordX()==this->posicion().coordX()){
+			if(tablero::getTablero().comprobarHorizontal(this->posicion,destino)){
+				esLegal=true;
+			}
+		}
+		
+		//Movimiento horizontal
+		if(destino.coordY()==this->posicion().coordY()){
+			if(tablero::getTablero().comprobarVertical(this->posicion(),destino)){
+				esLegal=true;
+			}
+		}
+		
+		//Movimiento diagonal
+		if(abs(this->posicion().coordX() - destino.coordX())==abs(this->posicion().coordY() - destino.coordY())){
+			if(tablero::getTablero().comprobarDiagonal(this->posicion(),destino)){
+				esLegal=true;
+			}
+		}
+	}
+	
+	return esLegal;
+}
