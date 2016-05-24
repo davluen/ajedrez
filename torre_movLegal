@@ -1,0 +1,28 @@
+//
+// funcion movelegal(casilla&);
+//
+
+#include"torre.h"
+#include"tablero.h"
+#include"pieza.h"
+
+bool movlegal(casilla& destino){
+	bool esLegal=false;
+	
+	//Miramos si está ocupada o si está ocupada por una pieza de otro color
+	if(!destino.ocupada()||(destino.ocupada().color()!=this->color())){
+		if(this->posicion().coordX()==destino.coordX()){
+			if(tablero::getTablero().comprobarHorizontal(this->posicion(),destino)){
+				esLegal=true;
+			}
+		}
+		else if(this->posicion().coordY()==destino.coordY()){
+			if(tablero::getTablero().comprobarVertical(this->posicion(),destino)){
+				esLegal=true;
+			}
+		}
+	}
+	//falta comprobar el ENROQUE
+	
+	return esLegal;
+}
