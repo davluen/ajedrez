@@ -121,6 +121,9 @@ int getDimension(){
 	return DIM;
 }
 
+casilla& casillaPorCoord(int x, int y){
+	return _casillas.at(x).at(y);
+}
 
 //Operador amigo
 
